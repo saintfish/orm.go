@@ -82,6 +82,7 @@ type selectBuilder struct {
 	whereClause string
 	whereData   []interface{}
 	limitClause string
+	orderClause string
 }
 
 func (s *selectBuilder) Where(clause string, data ...interface{}) *selectBuilder {
@@ -92,6 +93,11 @@ func (s *selectBuilder) Where(clause string, data ...interface{}) *selectBuilder
 
 func (s *selectBuilder) Limit(clause string) *selectBuilder {
 	s.limitClause = clause
+	return s
+}
+
+func (s *selectBuilder) Order(clause string) *selectBuilder {
+	s.orderClause = clause
 	return s
 }
 
@@ -106,6 +112,7 @@ func (s *selectBuilder) Find(m Model) error {
 		Columns:     spec.Columns(),
 		WhereClause: s.whereClause,
 		LimitClause: s.limitClause,
+		OrderClause: s.orderClause,
 	}
 	sqlStat, err := executeTemplate("select", data)
 	if err != nil {

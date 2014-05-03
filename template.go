@@ -26,13 +26,15 @@ type createTableData struct {
 const selectTemplate = `SELECT {{range $i, $c := .Columns}}{{$c.Name}}{{if last $i $.Columns | not}}, {{end}}{{end}}
 	FROM {{.Table}}{{if .WhereClause}}
 	WHERE {{.WhereClause}}{{end}}{{if .LimitClause}}
-	LIMIT {{.LimitClause}}{{end}};`
+	LIMIT {{.LimitClause}}{{end}}{{if .OrderClause}}
+	ORDER BY {{.OrderClause}}{{end}};`
 
 type selectData struct {
 	Table       string
 	Columns     []ColumnSpec
 	WhereClause string
 	LimitClause string
+	OrderClause string
 }
 
 const countTemplate = `SELECT count(*)
