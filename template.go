@@ -25,9 +25,9 @@ type createTableData struct {
 
 const selectTemplate = `SELECT {{range $i, $c := .Columns}}{{$c.Name}}{{if last $i $.Columns | not}}, {{end}}{{end}}
 	FROM {{.Table}}{{if .WhereClause}}
-	WHERE {{.WhereClause}}{{end}}{{if .LimitClause}}
-	LIMIT {{.LimitClause}}{{end}}{{if .OrderClause}}
-	ORDER BY {{.OrderClause}}{{end}};`
+	WHERE {{.WhereClause}}{{end}}{{if .OrderClause}}
+	ORDER BY {{.OrderClause}}{{end}}{{if .LimitClause}}
+	LIMIT {{.LimitClause}}{{end}};`
 
 type selectData struct {
 	Table       string
