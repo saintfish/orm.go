@@ -145,6 +145,7 @@ func (s *selectBuilder) FindAll(ptrOfModelArray interface{}) error {
 		Columns:     spec.Columns(),
 		WhereClause: s.whereClause,
 		LimitClause: s.limitClause,
+		OrderClause: s.orderClause,
 	}
 	sqlStat, err := executeTemplate("select", data)
 	if err != nil {
