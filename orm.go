@@ -138,7 +138,6 @@ func (s *selectBuilder) FindAll(ptrOfModelArray interface{}) error {
 	}
 	var m Model
 	t = t.Elem().Elem()
-	fmt.Println(reflect.PtrTo(t))
 	m = reflect.New(t).Interface().(Model)
 	spec := m.TableSpec()
 	data := selectData{
